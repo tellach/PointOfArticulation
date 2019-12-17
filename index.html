@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Network | Manipulation</title>
+    <title>Points d'articulation</title>
     <link href="styles.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.js"></script>
@@ -31,6 +31,7 @@
         <input type="button" value="cancel" id="cancelButton" />
     </div>
     <br />
+    <button id="articulation">Articulation</button>
     <div id="mynetwork"></div>
     <div id="config"></div>
 
@@ -38,7 +39,7 @@
 
 </html>
 <script>
-            var network = null;
+        var network = null;
         var nodes = new vis.DataSet([{
                 id: 1,
                 label: 'Node 1'
@@ -79,7 +80,7 @@
             },
             {
                 from: 3,
-                to: 3
+                to: 4
             }
         ]);
 
@@ -149,7 +150,6 @@
                 }
 
             };
-
             network = new vis.Network(container, data, options);
         }
 
@@ -169,5 +169,14 @@
             data.label = document.getElementById('node-label').value;
             clearPopUp();
             callback(data);
+        }
+
+        document.getElementById("articulation").addEventListener("click", tarjan);
+
+        function tarjan(){
+            var edges = data.edges._data;
+            var nodes = data.nodes._data;
+            
+            
         }
 </script>
