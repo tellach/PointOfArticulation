@@ -1,8 +1,18 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 #mynetwork {
     position: relative;
-    width: 800px;
-    height: 600px;
-    border: 1px solid lightgray;
+    height: 450px;
+    border: 1px solid #17a2b8;
+    border-radius: 5px;
+    background: white;
+    
+}
+
+h1{
+    color: white;
 }
 
 #network-popUp {
@@ -26,3 +36,11 @@
     width: 400px;
     height: 600px;
 }
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #00356B;
+    z-index: -10;
+  }
