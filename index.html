@@ -249,14 +249,24 @@
         function tarjan(){
             var edges = data.edges;
             var nodes = data.nodes;
+            
+            let i = 0;
+            nodes.forEach(function(node,index){
+                console.log(nodes.index)
+                edges.forEach(edge=>{
+                    if(edge.to == index) edge.to = i;
+                    if(edge.from == index) edge.from = i;
+                })
+                
+                i++;
+            });
 
             console.log("Articulation points in first graph")
-
             g1=new Graph(nodes.length)
             edges.forEach(element => {
                 g1.addEdge(element.from,element.to)
                 
-            });
+            })
             console.log(g1.adj);
             g1.AP()                                    
         }
