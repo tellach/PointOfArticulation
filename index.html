@@ -186,14 +186,16 @@
             APUtil(u,visited,disc, low, parent, ap){
                 var children =0;
                 visited[u] = true;
-                disc[u] = low[u] = ++this.time;
-                for(var v=0;v<this.adj[u].length;v++){
-
-                    if (!visited[v]) {
-                        
+                disc[u] =this.time;
+                low[u]  =this.time;
+                this.time++;
+                var tab=this.adj[u]
+                for(var i=0 ; i<tab.length ; i++){
+                    var v=tab[i];
+                    if (visited[v]==false) {
                         this.children++;
                         parent[v] = u;
-                        this.APUtil(u, visited, disc, low, parent, ap);
+                        this.APUtil(v, visited, disc, low, parent, ap);
 
 
                         low[u] = Math.min(low[u],low[v]);
@@ -203,12 +205,14 @@
                             ap[u]=true;
 
 
-                        if (parent[u] != NIL && low[v] >= disc[u])
+                        if (parent[u] != -1 && low[v] >= disc[u])
                             ap[u] = true; 
                         
                     }
-                    else if (v != parent[u])
+                    else if (v != parent[u]){
                         low[u] = Math.min(low[u], disc[v]);
+
+                    }
                 }
             }
             AP(){
