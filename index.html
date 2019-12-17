@@ -196,21 +196,21 @@
                 for(var i=0 ; i<tab.length ; i++){
                     var v=tab[i];
                     if (!visited[v]) {
-                        this.children++;
+                        children++;
                         parent[v] = u;
                         this.APUtil(v, visited, disc, low, parent, ap);
 
 
                         low[u] = Math.min(low[u],low[v]);
+                        
 
-
-                        if((parent[u]==-1) && (children>1)){
+                        if((parent[u]==0) && (children>1)){
                             ap[u] = true;
                         }
 
 
 
-                        if ((parent[u] != -1) && (low[v] >= disc[u])){
+                        if ((parent[u] != 0) && (low[v] >= disc[u]) ){
                             ap[u] = true;
                         }
 
@@ -238,8 +238,13 @@
 
 
                 for(var j=0 ; j<this.v ; j++){
-                    if(ap[j] == true)
+                    data.nodes.update({ id: j, color: { background: '#349feb' } })
+
+                    if(ap[j] == true){
                         console.log(j)
+                        data.nodes.update({id:j, color : { background: '#eb4034' }})
+                    }
+
                 }
                 
 
