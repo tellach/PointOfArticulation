@@ -173,10 +173,87 @@
 
         document.getElementById("articulation").addEventListener("click", tarjan);
 
+        class Graph{
+            constructor(vertices){
+                this.time=0;
+                this.v=vertices;
+                //this.adj=[]
+                this.adj = Array(this.v).fill([]);
+                // for(var i=0;i<this.v;++i){
+                //     this.adj[i] = [];
+                // }   
+
+            }
+            addEdge(v,w){
+                this.adj[v-1].push(w)
+                console.log("====",w,this.adj[w])
+                this.adj[w-1].push(v)
+            }
+            APUtil(u,visited,disc, low, parent, ap){
+                var children =0;
+                visited[u] = true;
+                disc[u] = low[u] = ++time;
+                for(var v=0;v<adj[u].length;v++){
+
+                    if (!visited[v]) {
+
+                        this.children++;
+                        parent[v] = u;
+                        APUtil(u, visited, disc, low, parent, ap);
+
+
+                        low[u] = Math.min(low[u],low[v]);
+
+
+                        if(parent[u]==-1 && children>1)
+                            ap[u]=true;
+
+
+                        if (parent[u] != NIL && low[v] >= disc[u])
+                            ap[u] = true; 
+                        
+                    }
+                    else if (v != parent[u])
+                        low[u] = Math.min(low[u], disc[v]);
+                }
+            }
+            AP(){
+
+                visited = Array(this.v).fill(false)
+                disc = Array(this.v).fill(0)
+                low = Array(this.v).fill(0)
+                parent = Array(this.v).fill(0)
+                ap = Array(this.v).fill(false)
+
+                for (var i=0; i<v; i++ ){
+                    if(visited[i]==false)
+                        APUtil(i,visited,disc,low,parent,ap);
+                }
+
+
+                for(var i=0 ; i<v ; i++){
+                    if(ap[i] == true)
+                        console.log(i)
+                }
+                
+
+            }
+        }
+
         function tarjan(){
-            var edges = data.edges._data;
-            var nodes = data.nodes._data;
-            
+            var edges = data.edges;
+            var nodes = data.nodes;
+
+            console.log("Articulation points in first graph")
+
+            g1=new Graph(nodes.length)
+            //console.log(nodes.length)
+            edges.forEach(element => {
+                g1.addEdge(element.from,element.to)
+                
+            });
+            console.log(g1.adj);
+            g1.AP()                                    
             
         }
 </script>
